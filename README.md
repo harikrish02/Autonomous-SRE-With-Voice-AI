@@ -23,6 +23,8 @@ This is **slow, error-prone, and doesn't scale**.
 
 ## 💡 Our Solution
 
+![HLD Diagram](assets/High-level-design.png)
+
 An end-to-end AI platform that closes the loop from **detection → diagnosis → approval → remediation** — without manual intervention at every step.
 
 
