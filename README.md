@@ -1,8 +1,12 @@
-# 🚨 DevOps Incident Detection & Auto-Remediation Platform
+# 🚨 Autonomous SRE - DevOps Incident Detection & Auto-Remediation Platform
 
 > **AI-powered incident management for distributed microservice systems** — automatically detects failures, identifies root causes via RAG, notifies operators by voice call, and executes approved remediation actions via natural language using an MCP-style Gemini agent.
 
 Built for **Hack BLR 2026** 🏆
+
+## Demo Video
+
+[Demo Video (Google Drive)](https://drive.google.com/file/d/1cF8FPXTEqLGIXuP2EYlWQ4j0jak-grMB/view?usp=sharing)
 
 ---
 
@@ -20,6 +24,8 @@ This is **slow, error-prone, and doesn't scale**.
 ## 💡 Our Solution
 
 An end-to-end AI platform that closes the loop from **detection → diagnosis → approval → remediation** — without manual intervention at every step.
+
+
 
 ```
 User Request → Service A → Service B → Service C
