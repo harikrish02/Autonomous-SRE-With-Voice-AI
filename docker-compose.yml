@@ -1,0 +1,96 @@
+version: "3.8"
+
+services:
+  admin-service:
+    build: ./services/admin-service
+    container_name: admin-service
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - SERVICE_A_URL=http://service-a:8001
+      - SERVICE_B_URL=http://service-b:8002
+      - SERVICE_C_URL=http://service-c:8003
+      - ADMIN_SERVICE_URL=http://admin-service:8000
+      - QDRANT_HOST=qdrant
+    volumes:
+      - admin-data:/app/data
+      - //var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - devops-net
+    depends_on:
+      - qdrant
+
+  service-a:
+    build: ./services/service-a
+    container_name: service-a
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    environment:
+      - SERVICE_B_URL=http://service-b:8002
+      - ADMIN_SERVICE_URL=http://admin-service:8000
+    depends_on:
+      - admin-service
+    networks:
+      - devops-net
+
+  service-b:
+    build: ./services/service-b
+    container_name: service-b
+    ports:
+      - "8002:8002"
+    env_file:
+      - .env
+    environment:
+      - SERVICE_C_URL=http://service-c:8003
+      - ADMIN_SERVICE_URL=http://admin-service:8000
+    depends_on:
+      - admin-service
+    networks:
+      - devops-net
+
+  service-c:
+    build: ./services/service-c
+    container_name: service-c
+    ports:
+      - "8003:8003"
+    env_file:
+      - .env
+    environment:
+      - ADMIN_SERVICE_URL=http://admin-service:8000
+    depends_on:
+      - admin-service
+    networks:
+      - devops-net
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant-data:/qdrant/storage
+    networks:
+      - devops-net
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - devops-net
+
+networks:
+  devops-net:
+    driver: bridge
+
+volumes:
+  admin-data:
+  qdrant-data:
+  ollama-data:
