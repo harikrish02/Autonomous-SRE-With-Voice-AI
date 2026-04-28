@@ -364,6 +364,9 @@ All MCP-triggered actions are recorded in the audit trail with `approved_by: mcp
 
 **Hack BLR 2026** — Bengaluru's flagship hackathon
 
+Team - [@Harikrish02](https://github.com/harikrish02) , [@Arvind25R](https://github.com/Arvind25R) and [@SandeepGenz](https://github.com/sandeepGenz) !
+
+
 ---
 
 ## 📄 License
